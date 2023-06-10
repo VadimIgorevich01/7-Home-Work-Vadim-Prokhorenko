@@ -115,19 +115,22 @@ Console.WriteLine (@$"Запрашиваемый элемент (строчка 
 // Найдите среднее арифметическое элементов в каждом столбце.
 
 Console.WriteLine("Массив задания 3:");
-int maxRowOfMatrix2 = new Random().Next(4, 7);
-int maxColumnOfMatrix2 = new Random().Next(5, 8);
+int maxRowOfMatrix2 = new Random().Next(3, 5);
+int maxColumnOfMatrix2 = new Random().Next(4, 6);
 int [,] newEmptyMatrix = new int [maxRowOfMatrix2, maxColumnOfMatrix2];
 int [,] newFilledMatrix = FillIntMatrix (newEmptyMatrix);
-double arithmeticMean = 0;
+double arithmeticMean = 0.0;
+int sumAlongColumn = 0;
 for (int i = 0; i < newFilledMatrix.GetLength(1); i++)
 {
     for (int j = 0; j < newFilledMatrix.GetLength(0); j++)
     {
-        arithmeticMean += newFilledMatrix [j, i];
+        sumAlongColumn += newFilledMatrix [j, i];
     }
-    Console.WriteLine($"Среднее арифметическое в столбце {i+1} равно {arithmeticMean}");
-    arithmeticMean = 0;
+    arithmeticMean = (double) sumAlongColumn / (double) maxRowOfMatrix2;
+    arithmeticMean = Math.Round (arithmeticMean, 2, MidpointRounding.ToZero);
+    Console.WriteLine($"Среднее арифметическое в столбце {i+1} равно: {arithmeticMean}");
+    sumAlongColumn = 0;
 }
 
 // Здравствуйте, видео по семинару "Урок 7. Двумерные массивы" 
